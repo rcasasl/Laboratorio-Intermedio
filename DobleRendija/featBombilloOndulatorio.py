@@ -7,7 +7,7 @@ laserDoble = "DobleRendija\dobleRendijaBombillo.xlsx"
 laser2df = pd.read_excel(laserDoble)
 print(laser2df)
 laser2X = laser2df.iloc[int(0 * len(laser2df)):int(1 * len(laser2df)), 0].values
-laser2V = laser2df.iloc[int(0 * len(laser2df)):int(1 * len(laser2df)), 1].values
+laser2V = laser2df.iloc[int(0 * len(laser2df)):int(1 * len(laser2df)), 4].values
 
 # modelo
 def intensity(params, x):
