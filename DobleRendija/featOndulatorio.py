@@ -20,7 +20,7 @@ def loss(params, x, observed):
     return np.mean((predicted - observed) ** 2)
 
 # Initial guess for parameters
-initial_guess = [1, 1, 1, 1]  # Adjust as needed
+initial_guess = [0.08, 4e-4, 4e-3, 5000]  # Adjust as needed
 
 # Minimize the loss function to find the best parameters
 result = minimize(loss, initial_guess, args=(laser2X, laser2V),method='Nelder-Mead')
