@@ -9,27 +9,27 @@ print(laser2df)
 laser2X = laser2df.iloc[int(0 * len(laser2df)):int(1 * len(laser2df)), 0].values
 laser2V = laser2df.iloc[int(0 * len(laser2df)):int(1 * len(laser2df)), 1].values
 
-# Define the equation
+# modelo
 def intensity(params, x):
     A, B, C, D = params
     return A * np.cos(B * x + C) ** 2 + D
 
-# Define the loss function
+# funcion de perdida
 def loss(params, x, observed):
     predicted = intensity(params, x)
     return np.mean((predicted - observed) ** 2)
 
-# Initial guess for parameters
-initial_guess = [1, 0.0005, 0.005, 0.05]  # Adjust as needed
+# Parametros estimados
+initial_guess = [1, 0.0005, 0.005, 0.05]
 
-# Minimize the loss function to find the best parameters
+# Minimizacion de la funcion de perdida por el metodo Nelder-Mead (hyperparameters)
 result = minimize(loss, initial_guess, args=(laser2X, laser2V),method='Nelder-Mead')
 
-# Extract the best parameters
+# Sacamos los mejores parametros
 best_params = result.x
 print("Best Parameters:", best_params)
 
-#modelo
+#valores en Y para el modelo para graficar
 Y = intensity(best_params, laser2X)
 
 plt.scatter(laser2X, laser2V, label='Original Data')
