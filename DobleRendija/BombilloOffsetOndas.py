@@ -3,7 +3,7 @@ import numpy as np
 from scipy.optimize import minimize
 import pandas as pd
 
-laserDoble = "DobleRendija/dobleRendijaBombillo.xlsx"
+laserDoble = "DobleRendija\dobleRendijaBombillo.xlsx"
 laser2df = pd.read_excel(laserDoble)
 print(laser2df)
 laser2X = laser2df.iloc[int(0 * len(laser2df)):int(1 * len(laser2df)), 0].values
