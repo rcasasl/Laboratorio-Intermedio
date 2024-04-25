@@ -11,8 +11,9 @@ laser2V = laser2df.iloc[int(0 * len(laser2df)):int(1 * len(laser2df)), 4].values
 
 # modelo
 def intensity(params, x):
-    A, C, D, X0, B = params
-    return A * np.cos(D*(x - X0))**2 * (np.sin(C*(x - X0))/(C*(x-X0)))**2 + B
+    X0 = 1600
+    A, C, D, B = params
+    return A * np.cos(D*(x - X0))**2 * (np.sin(C*(x - X0)+1e-12)/(C*(x-X0)+1e-12))**2 + B
 
 # funcion de perdida
 def loss(params, x, observed):
@@ -20,7 +21,7 @@ def loss(params, x, observed):
     return np.mean((predicted - observed) ** 2)
 
 # Parametros estimados
-initial_guess = [0.014, 4e-4, 3e-3, 1600, 0.005]
+initial_guess = [0.014167, 0.0007, 0.004, 0.005]
 
 # Minimizacion de la funcion de perdida por el metodo Nelder-Mead (hyperparameters)
 result = minimize(loss, initial_guess, args=(laser2X, laser2V),method='Nelder-Mead')
